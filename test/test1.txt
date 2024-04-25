@@ -1,0 +1,66 @@
+import React, { useState } from 'react';
+const products = [
+
+  {
+
+    name: "Product 1",
+
+    description: "This is product 1 description.",
+    imageUrl: "https://example.com/product1-image.jpg",
+  },
+];
+const ProductPage = () => {
+ const [selectedProduct, setSelectedProduct] = useState(null);
+  function showProductDetails (product)  {
+    setSelectedProduct(product);
+  };
+   function closeProductDetails  ()  {
+    setSelectedProduct(null);
+  };
+
+
+    return (
+     <div className="product-page">
+     {
+          products.map((product)=> {
+          <div className="product" key={product.id}>
+           <div className="product-image">
+            <img src={product.imageUrl} alt={product.name} />
+             </div>
+             <div className="product-details">
+            <h2 className="product-name">{product.name}</h2>
+            <p className="product-price">${product.price}</p>
+             <button
+              className="show-details"
+              onClick={ ()=>{ showProductDetails(product)}
+
+              }
+              >
+                 Show Details
+                  </button>
+
+                   </div>
+        </div>
+
+          })
+     }
+
+      {selectedProduct && (
+        <div className="product-details-modal">
+          <div className="modal-content">
+            <span className="close" onClick={closeProductDetails}>
+              &times;
+            </span>
+            <h2>{selectedProduct.name}</h2>
+            <p>{selectedProduct.description}</p>
+            <p>Price: ${selectedProduct.price}</p>
+          </div>
+        </div>
+      )}
+    </div>
+
+
+    );
+
+ };
+ export default ProductPage;
