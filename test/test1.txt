@@ -1,16 +1,32 @@
 import React, { useState } from 'react';
+
+
 const products = [
+
 
   {
 
+
     name: "Product 1",
 
+
     description: "This is product 1 description.",
+
     imageUrl: "https://example.com/product1-image.jpg",
   },
+
+
+
 ];
+
+
 const ProductPage = () => {
- const [selectedProduct, setSelectedProduct] = useState(null);
+
+
+var x=10;
+var x=10;
+
+
   function showProductDetails (product)  {
     setSelectedProduct(product);
   };
@@ -20,9 +36,12 @@ const ProductPage = () => {
 
 
     return (
+
      <div className="product-page">
      {
           products.map((product)=> {
+
+
           <div className="product" key={product.id}>
            <div className="product-image">
             <img src={product.imageUrl} alt={product.name} />

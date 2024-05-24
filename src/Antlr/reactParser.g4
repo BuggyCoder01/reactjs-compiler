@@ -9,7 +9,7 @@ name: IDENTIFIER COLON STRING_LITERAL;
 description:IDENTIFIER COLON STRING_LITERAL ;
 image:IDENTIFIER COLON STRING_LITERAL ;
 main_component: (CONST|LET|VAR)? IDENTIFIER EQUAL OPEN_PAREN CLOSE_PAREN ARROW OPEN_BRACE body return CLOSE_BRACE SEMICOLON  ;
-body: equaletion  branch_component1;
+body: equaletion* statement* branch_component1;
 equaletion:  equal1
             |equal2    ;
 

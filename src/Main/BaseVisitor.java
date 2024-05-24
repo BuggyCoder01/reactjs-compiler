@@ -1,10 +1,23 @@
+package Main;
+
+
+import AST.Node.Declare.Declaration;
+import AST.Node.Node;
 import Antlr.reactParserBaseVisitor;
 import Classes.*;
 import Antlr.reactParser;
+import ErrorCheck.ErrorCheck;
+import SymbolTable.Scope;
+import SymbolTable.Symbol;
+
 
 import java.util.ArrayList;
 import java.util.List;
+
+
+
 public class BaseVisitor extends reactParserBaseVisitor {
+
     @Override
     public Start_compiler visitStart_compiler(reactParser.Start_compilerContext ctx) {
         Start_compiler start_compiler = new Start_compiler();
@@ -123,9 +136,34 @@ public class BaseVisitor extends reactParserBaseVisitor {
     public Body visitBody(reactParser.BodyContext ctx) {
 
         Body body = new Body();
+        List<Equaletion> equaletionList = new ArrayList<>();
+        List<Statement>  statementList= new ArrayList<>();
+        Declaration declaration = new Declaration();
+        Scope.createScope("body scope");
 
+        //Scope.getCurrentScope();
         body.setBranch_component1((Branch_component1) visit(ctx.branch_component1()));
-        body.setEqualetion((Equaletion) visit(ctx.equaletion()));
+        if (ctx.equaletion() != null) {
+            for (int i = 0; i < ctx.equaletion().size(); i++) {
+                equaletionList.add((Equaletion) visit(ctx.equaletion().get(i)));
+
+            }
+        }
+        body.setEqualetion(equaletionList);
+
+        if (ctx.statement() != null) {
+            for (int i = 0; i < ctx.statement().size(); i++) {
+                statementList.add((Statement) visit(ctx.statement().get(i)));
+
+            }
+        }
+
+
+
+//        ErrorCheck.sameScopeRepeat(symbol, ctx.start.getLine(), Scope.getCurrentScope().getId());
+
+        Scope.removeScope("body Scope");
+
 
         return body;
     }
@@ -150,9 +188,36 @@ public class BaseVisitor extends reactParserBaseVisitor {
     public Equal1 visitEqual1(reactParser.Equal1Context ctx) {
         Equal1 equal1 = new Equal1();
         equal1.setIDENTIFIER(ctx.IDENTIFIER().getText());
-        equal1.setFLOAT_LITERAL(Float.parseFloat(ctx.FLOAT_LITERAL().getText()));
-        equal1.setSTRING_LITERAL(ctx.STRING_LITERAL().getText());
-        equal1.setDECIMAL_INTEGER_LITERAL(Integer.parseInt(ctx.DECIMAL_INTEGER_LITERAL().getText()));
+        if (ctx.FLOAT_LITERAL() != null) {
+
+            equal1.setFLOAT_LITERAL(Float.parseFloat(ctx.FLOAT_LITERAL().getText()));
+            Symbol symbol = Symbol.createSymbol(Scope.getCurrentScope().getId(), "Variable",ctx.IDENTIFIER().getText(),ctx.getStart().getLine());
+            Scope scop = Scope.getCurrentScope();
+            System.out.println(scop.getName());
+
+                    ErrorCheck.sameScopeRepeat(symbol,ctx.start.getLine(),scop.getId());
+                }
+
+        //equal1.setFLOAT_LITERAL(Float.parseFloat(ctx.FLOAT_LITERAL().getText()));
+        if (ctx.STRING_LITERAL() != null) {
+            equal1.setSTRING_LITERAL(ctx.STRING_LITERAL().getText());
+            Symbol symbol = Symbol.createSymbol(Scope.getCurrentScope().getId(), "Variable",ctx.IDENTIFIER().getText(),ctx.getStart().getLine());
+            Scope scop = Scope.getCurrentScope();
+            System.out.println(scop.getName());
+
+            ErrorCheck.sameScopeRepeat(symbol,ctx.start.getLine(),scop.getId());
+        }
+        //equal1.setSTRING_LITERAL(ctx.STRING_LITERAL().getText());
+        if (ctx.DECIMAL_INTEGER_LITERAL() != null) {
+            equal1.setDECIMAL_INTEGER_LITERAL(Integer.parseInt(ctx.DECIMAL_INTEGER_LITERAL().getText()));
+            Symbol symbol = Symbol.createSymbol(Scope.getCurrentScope().getId(), "Variable",ctx.IDENTIFIER().getText(),ctx.getStart().getLine());
+            Scope scop = Scope.getCurrentScope();
+            System.out.println(scop.getName());
+
+            ErrorCheck.sameScopeRepeat(symbol,ctx.start.getLine(),scop.getId());
+        }
+        //equal1.setDECIMAL_INTEGER_LITERAL(Integer.parseInt(ctx.DECIMAL_INTEGER_LITERAL().getText()));
+
 
         return equal1;
     }
@@ -192,6 +257,7 @@ public class BaseVisitor extends reactParserBaseVisitor {
             }
         }
         parameterList.setParameter(list);
+
         return parameterList;
     }
 
@@ -316,8 +382,16 @@ public class BaseVisitor extends reactParserBaseVisitor {
     @Override
     public Expression visitIDENTIFIER_expression(reactParser.IDENTIFIER_expressionContext ctx) {
 
+        int lineNumber = ctx.getStart().getLine();
+        String varName = ctx.IDENTIFIER().getText();
+
         Expression expression = new Expression();
         expression.setIDENTIFIER1(ctx.IDENTIFIER().getText());
+
+
+
+
+
         return expression;
     }
 
