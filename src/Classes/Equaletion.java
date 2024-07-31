@@ -14,6 +14,20 @@ public class Equaletion {
             equal2.PrintAst();
         }
     }
+    public String generate() {
+        String s = "";
+        if(equal1!=null)
+        {
+            s += equal1.toString();
+        }
+        if(equal2!=null)
+        {
+            s += equal2.generate();
+        }
+
+
+        return s;
+    }
 
     public Equal1 getEqual1() {
         return equal1;

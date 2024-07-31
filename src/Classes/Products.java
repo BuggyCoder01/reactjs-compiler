@@ -8,6 +8,15 @@ Name namee;
 Price pricee;
 Descreption descriptionn;
 Image imagee;
+Equal2 equal2;
+
+    public Equal2 getEqual2() {
+        return equal2;
+    }
+
+    public void setEqual2(Equal2 equal2) {
+        this.equal2 = equal2;
+    }
 
     public void PrintAst(){
         if(IDENTIFIER!=null)
@@ -34,6 +43,27 @@ Image imagee;
         {
             imagee.PrintAst();
         }
+        if(equal2!=null)
+        {
+            equal2.PrintAst();
+        }
+    }
+    public String generate() {
+        String s = "";
+         s+="const"+IDENTIFIER+'='+'['+'{';
+        if(id1!=null)
+        {
+            s+=id1.toString();
+        }
+        s += namee.toString();
+        if(pricee!=null)
+        {
+            s+=pricee.toString();
+        }
+        s += descriptionn.toString();
+        s += imagee.toString();
+        s+='}'+','+']'+';';
+        return s;
     }
 
     public void setIDENTIFIER(String IDENTIFIER) {

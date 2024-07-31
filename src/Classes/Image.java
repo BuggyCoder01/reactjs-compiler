@@ -12,7 +12,12 @@ public class Image {
 
 
     }
+    @Override
+    public String toString() {
+        return
+                "imageUrl:'" + +'"'+img+'"'+',' ;
 
+    }
     public void setImg(String img) {
         this.img = img;
     }

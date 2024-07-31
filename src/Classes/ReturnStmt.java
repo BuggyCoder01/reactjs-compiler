@@ -17,6 +17,11 @@ public class ReturnStmt {
             expression.PrintAst();
         }
     }
+    public String generate() {
+        String s = "";
+        s += expression.generate();
+        return s;
+    }
 
     public String getRETURN() {
         return RETURN;

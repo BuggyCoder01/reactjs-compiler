@@ -4,12 +4,20 @@ const products = [
     name: "Product 1",
     description: "This is product 1 description.",
     imageUrl: "https://example.com/product1-image.jpg",
+    
+3# const [selectedProduct, setSelectedProduct] = useState(null);
 
     ,
   },
 ];
 const ProductPage = () => {
 var s=3;
+
+
+1# var s=3;
+
+
+2# var v=g;
 
 const [selectedProduct, setSelectedProduct] = useState(null);
   function showProductDetails (product)  {

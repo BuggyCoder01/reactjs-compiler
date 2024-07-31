@@ -10,6 +10,13 @@ public class Name {
         }
 
     }
+    @Override
+    public String toString() {
+        return
+                "name:'" + +'"'+name+'"'+',' ;
+
+    }
+
     public void setName(String name) {
         this.name = name;
     }

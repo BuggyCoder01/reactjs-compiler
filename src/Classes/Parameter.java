@@ -20,6 +20,25 @@ public class Parameter {
 
     }
 
+
+    @Override
+    public String toString() {
+        String s = "";
+        if (IDENTIFIER != null) {
+            s += "(" + IDENTIFIER + ")";
+        }
+
+
+        if (NULLL != null) {
+            s += "(" + NULLL + ")";
+        }
+        if (DECIMAL_INTEGER_LITERAL != 0) {
+            s += "(" + DECIMAL_INTEGER_LITERAL + ")";
+        }
+
+        return s;
+    }
+
     public String getIDENTIFIER() {
         return IDENTIFIER;
     }

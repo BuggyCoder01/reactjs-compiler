@@ -27,6 +27,21 @@ public class Body {
             branch_component1.PrintAst();
         }
     }
+    public String generate() {
+        String s = "";
+
+        s += branch_component1.generate();
+
+        for (int i = 0; i < equaletion.size(); i++) {
+            s += equaletion.get(i).generate();
+
+        }
+        for (int i = 0; i < statements.size(); i++) {
+            s += statements.get(i).generate();
+
+        }
+        return s;
+    }
     public void setStatements(List<Statement> statements) {
         this.statements = statements;
     }

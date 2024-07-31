@@ -14,6 +14,14 @@ public class Function_call {
             parameterList.PrintAst();
         }
     }
+    public String generate() {
+        String s = "";
+
+        s += parameterList.generate();
+
+
+        return s;
+    }
 
     public String getIDENTIFIER() {
         return IDENTIFIER;

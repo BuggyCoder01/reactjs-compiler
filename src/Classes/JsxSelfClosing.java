@@ -31,6 +31,33 @@ public class JsxSelfClosing {
             closeingt.PrintAst();
         }
     }
+//    jsxSelfClosing: OPENTAG jsxElementName jsxAttributes? SLASH? CLOSETAG?(jsxElementChildren ? ) jsxSelfClosing* closeingt?  ;
+    public String generate() {
+        String s = "";
+        s+='<';
+        s += jsxElementName.toString();
+        s += jsxAttribute.generate();
+        s+='>';
+
+        if(jsxElementChildren!=null)
+        {
+            s += jsxElementChildren.generate();
+        }
+
+
+        for (int i = 0; i < jsxSelfClosing.size(); i++) {
+            s += jsxSelfClosing.get(i).generate();
+
+        }
+        if(closeingt!=null)
+        {
+            s += closeingt.generate();
+        }
+
+
+        return s;
+    }
+
 
     public JsxElementName getJsxElementName() {
         return jsxElementName;

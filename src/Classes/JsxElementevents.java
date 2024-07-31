@@ -9,6 +9,12 @@ public void PrintAst(){
 
 }
 
+    @Override
+    public String toString() {
+        String s = "";
+        s+=ONCLICK;
+        return s;
+    }
     public String getONCLICK() {
         return ONCLICK;
     }

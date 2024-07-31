@@ -25,6 +25,15 @@ public class Jsx11 {
         }
 
 }
+//    jsx11:  OPEN_BRACE IDENTIFIER DOT IDENTIFIER OPEN_PAREN aninnumos_function? CLOSE_PAREN CLOSE_BRACE    ;
+
+    public String generate() {
+        String s = "";
+        s+='{'+IDENTIFIER1+'.'+IDENTIFIER2+'(';
+        s += aninnumos_function.generate();
+        s+=')'+'}';
+        return s;
+    }
 
 
     public String getIDENTIFIER1() {

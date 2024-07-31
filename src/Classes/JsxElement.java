@@ -13,7 +13,15 @@ public class JsxElement {
             }
         }
     }
+    public String generate() {
+        String s = "";
 
+        for (int i = 0; i < jsxSelfClosing.size(); i++) {
+            s += jsxSelfClosing.get(i).generate();
+
+        }
+        return s;
+    }
     public List<JsxSelfClosing> getJsxSelfClosing() {
         return jsxSelfClosing;
     }

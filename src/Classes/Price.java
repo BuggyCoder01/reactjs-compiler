@@ -8,6 +8,14 @@ public class Price {
         System.out.println(price);
 
     }
+    @Override
+    public String toString() {
+        String s="";
+        s="price:'" + price;
+        return s;
+
+    }
+
     public void setPrice(float price) {
         this.price = price;
     }

@@ -6,12 +6,17 @@ public class Equal1 {
     String  STRING_LITERAL;
    int  DECIMAL_INTEGER_LITERAL;
    float  FLOAT_LITERAL;
+    String IDENTIFIER1;
 
    public void PrintAst(){
 
        if (IDENTIFIER!=null)
        {
            System.out.println(IDENTIFIER);
+       }
+       if (IDENTIFIER1!=null)
+       {
+           System.out.println(IDENTIFIER1);
        }
        if (STRING_LITERAL!=null)
        {
@@ -22,6 +27,12 @@ public class Equal1 {
 
 
    }
+    @Override
+    public String toString() {
+        String s = "";
+          s+="var"+IDENTIFIER+'='+DECIMAL_INTEGER_LITERAL;
+        return s;
+    }
 
     public String getIDENTIFIER() {
         return IDENTIFIER;
@@ -49,6 +60,14 @@ public class Equal1 {
 
     public float getFLOAT_LITERAL() {
         return FLOAT_LITERAL;
+    }
+
+    public void setIDENTIFIER1(String IDENTIFIER1) {
+        this.IDENTIFIER1 = IDENTIFIER1;
+    }
+
+    public String getIDENTIFIER1() {
+        return IDENTIFIER1;
     }
 
     public void setFLOAT_LITERAL(float FLOAT_LITERAL) {

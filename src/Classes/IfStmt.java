@@ -27,10 +27,16 @@ public class IfStmt {
         if (statement2 != null) {
             statement2.PrintAst();
         }
+    }
+    public String generate() {
+        String s = "";
+
+        s += expression.generate();
+        s += statement1.generate();
+        s += statement2.generate();
 
 
-
-
+        return s;
     }
 
     public String getIF() {

@@ -7,6 +7,7 @@ import Antlr.reactParser;
 
 import ErrorCheck.ErrorCheck;
 import SymbolTable.SymbolTable;
+import generation.Generator;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -40,7 +41,14 @@ public class Main {
         CommonTokenStream token=new CommonTokenStream(lexer);
         reactParser parser=new reactParser(token);
         ParseTree tree=parser.start_compiler();
+
         Start_compiler doc=(Start_compiler) new BaseVisitor().visit(tree);
+        doc.generate();
+        Generator generator=new Generator();
+        generator.addHtmlCode(doc.generate());
+        generator.generate();
+
+
        System.out.println(doc);
 
         System.out.println("Number of Scopes in the program : " + Scope.getContId());

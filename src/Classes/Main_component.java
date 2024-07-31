@@ -25,6 +25,16 @@ public class Main_component {
 
 
     }
+   // const ProductPage = () => {
+    public String generate() {
+        String s = "";
+        s+="const"+IDENTIFIER+'='+'('+')'+'='+'>'+'{';
+        s += body.generate();
+        s += returnn.generate();
+        s+='}';
+        return s;
+    }
+
 
     public void setIDENTIFIER(String IDENTIFIER) {
         this.IDENTIFIER = IDENTIFIER;

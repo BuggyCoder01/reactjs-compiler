@@ -28,6 +28,15 @@ public class Equal2 {
 
     }
 
+    public String generate() {
+        String s = "";
+        s+="const"+'['+IDENTIFIER1+','+IDENTIFIER2+']'+'=';
+        s += function_call.generate();
+        s+=';';
+
+        return s;
+    }
+
 
     public String getIDENTIFIER1() {
         return IDENTIFIER1;

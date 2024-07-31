@@ -10,7 +10,12 @@ public class Operatorr {
             System.out.println(OPERATOR);
         }
     }
-
+    @Override
+    public String toString() {
+        String s = "";
+         s+=OPERATOR;
+        return s;
+    }
 
     public String getOPERATOR() {
         return OPERATOR;

@@ -10,7 +10,13 @@ public class Closeingt {
             jsxElementName.PrintAst();
         }
     }
+    public String generate() {
+        String s = "";
 
+        s += jsxElementName.toString();
+
+        return s;
+    }
     public JsxElementName getJsxElementName() {
         return jsxElementName;
     }

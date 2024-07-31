@@ -32,12 +32,7 @@ public class    react_import {
 
     @Override
     public String toString() {
-        return "react_import{" +
-                "IMPORT='" + IMPORT + '\'' +
-                ", IDENTIFIER1='" + IDENTIFIER1 + '\'' +
-                ", IDENTIFIER2='" + IDENTIFIER2 + '\'' +
-                ", IDENTIFIER3='" + IDENTIFIER3 + '\'' +
-                '}';
+        return "import" + " " + IDENTIFIER1 + ',' + '{' + IDENTIFIER2 + "}" + "from" + "react"+";";
     }
 
     public void setIMPORT(String IMPORT) {

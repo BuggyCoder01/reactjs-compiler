@@ -37,6 +37,33 @@ public class JsxElementName {
             System.out.println(BUTTON);
         }
     }
+    @Override
+    public String toString() {
+        String s = "";
+        if (DIV != null) {
+           s+= DIV;
+        }
+        if (SPAN != null) {
+            s+= SPAN;
+        }
+        if (A != null) {
+            s+= A;
+        }
+        if (HEAD2 != null) {
+            s+= HEAD2;
+        }
+        if (PARAG != null) {
+            s+= PARAG;
+        }
+        if (IMG != null) {
+            s+= IMG;
+        }
+        if (BUTTON != null) {
+            s+= BUTTON;
+        }
+
+        return s;
+    }
 
     public String getDIV() {
         return DIV;

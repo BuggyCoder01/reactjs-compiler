@@ -112,6 +112,28 @@ public class Expression {
 
     }
 
+    public String generate() {
+        String s = "";
+        if(expression1!=null)
+        {
+            s += expression1.generate();
+        }
+
+        if(operator!=null)
+        {
+            s += operator.toString();
+        }
+        if(expression2!=null)
+        {
+            s += expression2.generate();
+        }
+        if(args!=null)
+        {
+            s += args.generate();
+        }
+        return s;
+    }
+
 
 
 

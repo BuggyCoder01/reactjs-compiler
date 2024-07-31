@@ -21,7 +21,13 @@ public class Return {
         }
 
     }
-
+    public String generate() {
+        String s = "";
+        s+="return"+'(';
+        s += jsxElement.generate();
+        s+=')';
+        return s;
+    }
     public String getRETURN() {
         return RETURN;
     }

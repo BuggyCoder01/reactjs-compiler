@@ -33,8 +33,54 @@ public class JsxAttribute {
 
     String LOGICAL_AND;
 
+//          <div className="product" key={product.id}>
+//
+//    jsxAttribute: (CLASSNAME EQUAL STRING_LITERAL )                                                                                                                # ATRIBUTE_CLASS
+//              | jsxAttribute (KEY EQUAL OPEN_BRACE  IDENTIFIER DOT IDENTIFIER  CLOSE_BRACE)                                                                    # ATRIBUTE_key
+//              |  (SRC EQUAL OPEN_BRACE  IDENTIFIER DOT IDENTIFIER  CLOSE_BRACE  ALT  EQUAL OPEN_BRACE IDENTIFIER DOT IDENTIFIER  CLOSE_BRACE )                 # ATRIBUTE_IMG
+//              |  jsxAttribute  CLOSETAG? (IDENTIFIER? COLON? DOLLAR? OPEN_BRACE  IDENTIFIER DOT IDENTIFIER  CLOSE_BRACE) OPENTAG SLASH jsxElementName CLOSETAG # ATRIBUTE_DOLLAR
+//              |   CLOSETAG? (IDENTIFIER? COLON? DOLLAR? OPEN_BRACE  IDENTIFIER DOT IDENTIFIER  CLOSE_BRACE) OPENTAG SLASH jsxElementName CLOSETAG              # ELEMENT
+//              |  jsxAttribute jsxElementevents EQUAL OPEN_BRACE aninnumos_function?  CLOSE_BRACE  CLOSETAG SHOWDETAILS                                         # FUNC_ELEMNT
+//              |  jsxAttribute jsxElementevents EQUAL OPEN_BRACE  IDENTIFIER   CLOSE_BRACE CLOSETAG LOGICAL_AND IDENTIFIER SEMICOLON
 
 
+    public String generate() {
+        String s = "";
+
+
+        if(jsxAttribute1!=null)
+        {
+            s += jsxAttribute1.generate();
+        }        s+="key"+'='+'{'+IDENTIFIER1+'.'+IDENTIFIER2+'}';
+
+        s+=CLASSNAME+'='+STRING_LITERAL;
+        if(jsxElementName!=null)
+        {
+            s += jsxElementName.toString();
+        }
+        s+="src"+'='+'{'+"product"+'.'+"imageUrl"+'}'+' '+"alt"+'='+'{'+"product"+'.'+"name"+'}'+' '+'/';
+        s+='/'+"div";
+
+        s+=CLASSNAME+'='+"product-details";
+
+
+        s+="h2 className=\"product-name\">{product.name}</h2";
+        s+="p className=\"product-price\">${product.price}</p";
+        s+="      <button\n" +
+                "              className=\"show-details\"\n" +
+                "              onClick={ ()=>{ showProductDetails(product)}\n" +
+                "\n" +
+                "              }\n" +
+                "              >\n" +
+                "                 Show Details\n" +
+                "                  </button>\n" +
+                "\n" +
+                "                   </div>\n" +
+                "        </div>";
+
+
+        return s;
+    }
     public void PrintAst() {
 
 

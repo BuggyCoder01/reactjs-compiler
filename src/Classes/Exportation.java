@@ -1,5 +1,7 @@
 package Classes;
 
+import generation.Generator;
+
 public class Exportation {
 
     String EXPORT;
@@ -20,6 +22,13 @@ public class Exportation {
         }
     }
 
+    @Override
+    public String toString() {
+        String s = "";
+        s+=" export default ProductPage;";
+
+        return s;
+    }
     public String getEXPORT() {
         return EXPORT;
     }

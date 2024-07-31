@@ -12,6 +12,12 @@ public class Descreption {
         }
 
     }
+    @Override
+    public String toString() {
+        return
+                "description:'" + +'"'+description+'"'+',' ;
+
+    }
 
     public void setDescription(String description) {
         this.description = description;

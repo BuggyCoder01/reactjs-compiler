@@ -27,6 +27,21 @@ public class Sss {
 
 
     }
+//    sss: OPEN_BRACE IDENTIFIER LOGICAL_AND LOGICAL_AND OPEN_PAREN  jsxSelfClosing  CLOSE_PAREN CLOSE_BRACE;
+
+    public String generate() {
+        String s = "";
+        s+='{'+IDENTIFIER+"&&"+'(';
+        s += jsxSelfClosing.generate();
+        s+=')'+'}';
+        s+=" </div>\n" +
+                "\n" +
+                "\n" +
+                "    );\n" +
+                "\n" +
+                " };";
+        return  s;
+    }
 
     public String getIDENTIFIER() {
         return IDENTIFIER;

@@ -9,6 +9,11 @@ public class ExprStmt {
             expression.PrintAst();
         }
     }
+    public String generate() {
+        String s = "";
+        s += expression.generate();
+        return s;
+    }
 
     public Expression getExpression() {
         return expression;

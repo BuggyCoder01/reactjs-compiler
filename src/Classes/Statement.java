@@ -23,6 +23,26 @@ public class Statement {
         }
 
     }
+    public String generate() {
+        String s = "";
+
+        s += exprStmt.generate();
+        if(returnStmt!=null)
+        {
+            s += returnStmt.toString();
+        }
+        if(ifStmt!=null)
+        {
+            s += ifStmt.toString();
+        }
+        if(block!=null)
+        {
+            s += block.toString();
+        }
+
+
+        return s;
+    }
 
     public ExprStmt getExprStmt() {
         return exprStmt;

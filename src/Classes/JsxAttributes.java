@@ -12,6 +12,15 @@ public class JsxAttributes {
             }
         }
     }
+    public String generate() {
+        String s = "";
+
+        for (int i = 0; i < jsxAttribute.size(); i++) {
+            s += jsxAttribute.get(i).generate();
+
+        }
+        return s;
+    }
 
     public List<JsxAttribute> getJsxAttribute() {
         return jsxAttribute;

@@ -10,6 +10,13 @@ public class Id {
         System.out.println(id);
 
     }
+    @Override
+    public String toString() {
+        String s="";
+        s="id:'" + id;
+        return s;
+
+    }
 
     public void setId(int id) {
         this.id = id;

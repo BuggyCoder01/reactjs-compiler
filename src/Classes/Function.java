@@ -28,7 +28,26 @@ public class Function {
         }
 
     }
+   // function: FUNCTION  IDENTIFIER OPEN_PAREN parameterList ?  CLOSE_PAREN OPEN_BRACE function_body CLOSE_BRACE  SEMICOLON   ;
+//   function showProductDetails (product)  {
+//       setSelectedProduct(product);
+//   };
 
+    public String generate() {
+        String s = "";
+        s+="function"+IDENTIFIER+'(';
+        if(parameterList!=null)
+        {
+            s += parameterList.toString();
+        }
+        s+=')'+'{';
+        s += function_body.generate();
+        s+='}'+';';
+
+
+
+        return s;
+    }
     public String getFUNCTION() {
         return FUNCTION;
     }

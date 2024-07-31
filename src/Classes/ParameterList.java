@@ -13,6 +13,15 @@ public class ParameterList {
             }
         }
     }
+    public String generate() {
+        String s = "";
+
+
+        for (int i = 0; i < parameter.size(); i++) {
+            s += parameter.get(i).toString();
+        }
+        return s;
+    }
 
     public List<Parameter> getParameter() {
         return parameter;

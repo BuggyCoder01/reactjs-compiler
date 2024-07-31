@@ -1,7 +1,8 @@
 package Classes;
 
-public class Aninnumos_function {
+import generation.Generator;
 
+public class Aninnumos_function {
 
     ParameterList parameterList;
     JsxElement jsxElement;
@@ -19,6 +20,26 @@ public class Aninnumos_function {
             function_call.PrintAst();
         }
     }
+//    aninnumos_function: OPEN_PAREN (parameterList ?) CLOSE_PAREN ARROW OPEN_BRACE (jsxElement?) (function_call?) CLOSE_BRACE;
+
+    public String generate() {
+        String s = "";
+        s+='(';
+        s += parameterList.generate();
+        s+=')'+'='+'>'+'{';
+
+       s+=jsxElement.generate();
+
+        if(function_call!=null)
+        {
+            s += function_call.generate();
+        }
+        s+='}';
+
+
+        return s;
+    }
+
 
     public ParameterList getParameterList() {
         return parameterList;

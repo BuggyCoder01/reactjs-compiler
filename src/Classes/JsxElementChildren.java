@@ -17,6 +17,19 @@ public class JsxElementChildren {
             }
         }
     }
+    public String generate() {
+        String s = "";
+
+        for (int i = 0; i < jsx11.size(); i++) {
+            s += jsx11.get(i).generate();
+
+        }
+        for (int i = 0; i < sss.size(); i++) {
+            s += sss.get(i).generate();
+
+        }
+        return s;
+    }
 
     public List<Jsx11> getJsx11() {
         return jsx11;

@@ -13,7 +13,14 @@ public class Function_body {
             }
         }
     }
+    public String generate() {
+        String s = "";
+        for (int i = 0; i < statement.size(); i++) {
+            s += statement.get(i).generate();
 
+        }
+        return s;
+    }
     public List<Statement> getStatement() {
         return statement;
     }

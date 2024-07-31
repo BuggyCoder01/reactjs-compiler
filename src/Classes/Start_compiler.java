@@ -1,15 +1,15 @@
 package Classes;
 
+import generation.Generator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Start_compiler {
     List<react_import> react_importList = new ArrayList<react_import>();
     List<Products> productsList = new ArrayList<Products>();
-
     Main_component mainComponent;
     Exportation export;
-
     public void PrintAst() {
         if (react_importList != null) {
             for (int i = 0; i < react_importList.size(); i++) {
@@ -29,6 +29,19 @@ public class Start_compiler {
             export.PrintAst();
         }
 
+    }
+    public String generate() {
+        String s = "";
+        for (int i = 0; i < react_importList.size(); i++) {
+            s += react_importList.get(i).toString();
+        }
+        for (int i = 0; i < productsList.size(); i++) {
+            s += productsList.get(i).generate();
+        }
+        s += mainComponent.generate();
+        s += export.toString();
+
+        return s;
     }
 
 

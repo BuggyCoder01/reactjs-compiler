@@ -16,6 +16,14 @@ public class Branch_component1 {
             }
         }
     }
+    public String generate() {
+        String s = "";
+
+        for (int i = 0; i < functions.size(); i++) {
+            s += functions.get(i).generate();
+        }
+        return s;
+    }
 
     public List<Function> getFunctions() {
         return functions;

@@ -9,6 +9,7 @@ import Antlr.reactParser;
 import ErrorCheck.ErrorCheck;
 import SymbolTable.Scope;
 import SymbolTable.Symbol;
+import generation.Generator;
 
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 
 
 public class BaseVisitor extends reactParserBaseVisitor {
+
 
     @Override
     public Start_compiler visitStart_compiler(reactParser.Start_compilerContext ctx) {
@@ -39,6 +41,8 @@ public class BaseVisitor extends reactParserBaseVisitor {
         start_compiler.setReact_importList(react_importList);
         start_compiler.setExport((Exportation) visit(ctx.exportation()));
         start_compiler.PrintAst();
+
+
         return start_compiler;
     }
 
@@ -55,6 +59,7 @@ public class BaseVisitor extends reactParserBaseVisitor {
 
     @Override
     public Products visitProducts(reactParser.ProductsContext ctx) {
+        Scope.createScope("product scope");
         Products products = new Products();
         products.setIDENTIFIER(ctx.IDENTIFIER().getText());
 
@@ -73,6 +78,15 @@ public class BaseVisitor extends reactParserBaseVisitor {
         for (int i = 0; i < ctx.image().size(); i++) {
             products.setImagee((Image) visit(ctx.image().get(i)));
         }
+
+        for (int i = 0; i < ctx.equal2().size(); i++) {
+            Symbol symbol = Symbol.createSymbol(Scope.getCurrentScope().getId(), "Hooks",ctx.equal2(0).getText(),ctx.getStart().getLine());
+            Scope scop = Scope.getCurrentScope();
+            System.out.println(scop.getName());
+            ErrorCheck.checkHooksUsage(symbol,ctx.start.getLine(),scop.getId());
+            products.setEqual2((Equal2) visit(ctx.equal2().get(i)));
+        }
+        Scope.removeScope("product Scope");
 
         return products;
     }
@@ -134,7 +148,7 @@ public class BaseVisitor extends reactParserBaseVisitor {
 
     @Override
     public Body visitBody(reactParser.BodyContext ctx) {
-
+        Scope.createScope("Hooks");
         Body body = new Body();
         List<Equaletion> equaletionList = new ArrayList<>();
         List<Statement>  statementList= new ArrayList<>();
@@ -164,6 +178,9 @@ public class BaseVisitor extends reactParserBaseVisitor {
 
         Scope.removeScope("body Scope");
 
+        Scope.removeScope("Hooks");
+
+
 
         return body;
     }
@@ -187,11 +204,11 @@ public class BaseVisitor extends reactParserBaseVisitor {
     @Override
     public Equal1 visitEqual1(reactParser.Equal1Context ctx) {
         Equal1 equal1 = new Equal1();
-        equal1.setIDENTIFIER(ctx.IDENTIFIER().getText());
+        equal1.setIDENTIFIER(ctx.IDENTIFIER(0).getText());
         if (ctx.FLOAT_LITERAL() != null) {
 
             equal1.setFLOAT_LITERAL(Float.parseFloat(ctx.FLOAT_LITERAL().getText()));
-            Symbol symbol = Symbol.createSymbol(Scope.getCurrentScope().getId(), "Variable",ctx.IDENTIFIER().getText(),ctx.getStart().getLine());
+            Symbol symbol = Symbol.createSymbol(Scope.getCurrentScope().getId(), "Variable",ctx.IDENTIFIER(0).getText(),ctx.getStart().getLine());
             Scope scop = Scope.getCurrentScope();
             System.out.println(scop.getName());
 
@@ -201,7 +218,7 @@ public class BaseVisitor extends reactParserBaseVisitor {
         //equal1.setFLOAT_LITERAL(Float.parseFloat(ctx.FLOAT_LITERAL().getText()));
         if (ctx.STRING_LITERAL() != null) {
             equal1.setSTRING_LITERAL(ctx.STRING_LITERAL().getText());
-            Symbol symbol = Symbol.createSymbol(Scope.getCurrentScope().getId(), "Variable",ctx.IDENTIFIER().getText(),ctx.getStart().getLine());
+            Symbol symbol = Symbol.createSymbol(Scope.getCurrentScope().getId(), "Variable",ctx.IDENTIFIER(0).getText(),ctx.getStart().getLine());
             Scope scop = Scope.getCurrentScope();
             System.out.println(scop.getName());
 
@@ -210,11 +227,17 @@ public class BaseVisitor extends reactParserBaseVisitor {
         //equal1.setSTRING_LITERAL(ctx.STRING_LITERAL().getText());
         if (ctx.DECIMAL_INTEGER_LITERAL() != null) {
             equal1.setDECIMAL_INTEGER_LITERAL(Integer.parseInt(ctx.DECIMAL_INTEGER_LITERAL().getText()));
-            Symbol symbol = Symbol.createSymbol(Scope.getCurrentScope().getId(), "Variable",ctx.IDENTIFIER().getText(),ctx.getStart().getLine());
+            Symbol symbol = Symbol.createSymbol(Scope.getCurrentScope().getId(), "Variable",ctx.IDENTIFIER(0).getText(),ctx.getStart().getLine());
             Scope scop = Scope.getCurrentScope();
             System.out.println(scop.getName());
 
             ErrorCheck.sameScopeRepeat(symbol,ctx.start.getLine(),scop.getId());
+        }
+
+        if (ctx.IDENTIFIER(1)!=null)
+        {
+          ErrorCheck.NotDefineInCurrentScope(ctx.IDENTIFIER(1).getText(),ctx.getStart().getLine(),Scope.getCurrentScope().getId());
+            equal1.setIDENTIFIER1(ctx.IDENTIFIER(1).getText());
         }
         //equal1.setDECIMAL_INTEGER_LITERAL(Integer.parseInt(ctx.DECIMAL_INTEGER_LITERAL().getText()));
 
